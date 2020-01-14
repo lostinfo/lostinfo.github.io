@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>如何优雅的关闭channel | lostinfo.github.io</title>
+    <meta name="description" content="lostinfo.github.io">
+    <link rel="icon" href="/favicon.ico">
+    
+    <link rel="preload" href="/assets/css/0.styles.ece84557.css" as="style"><link rel="preload" href="/assets/js/app.69df8792.js" as="script"><link rel="preload" href="/assets/js/8.ce605a37.js" as="script"><link rel="preload" href="/assets/js/13.850b3e67.js" as="script"><link rel="prefetch" href="/assets/js/10.910b140c.js"><link rel="prefetch" href="/assets/js/11.6500be05.js"><link rel="prefetch" href="/assets/js/12.81a1565e.js"><link rel="prefetch" href="/assets/js/14.05d87de1.js"><link rel="prefetch" href="/assets/js/2.ed6fd9ea.js"><link rel="prefetch" href="/assets/js/3.9e95c821.js"><link rel="prefetch" href="/assets/js/4.72441ce4.js"><link rel="prefetch" href="/assets/js/5.157322c8.js"><link rel="prefetch" href="/assets/js/6.e5a15b30.js"><link rel="prefetch" href="/assets/js/7.61d277c0.js"><link rel="prefetch" href="/assets/js/9.73cd95c7.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.ece84557.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">lostinfo.github.io</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/tag/" class="nav-link">Tag</a></div><div class="nav-item"><a href="https://www.github.com/lostinfo" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/tag/" class="nav-link">Tag</a></div><div class="nav-item"><a href="https://www.github.com/lostinfo" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>如何优雅的关闭channel</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/2020/01/09/how-to-turn-off-channel-gracefully/#一、channel关闭规则" class="sidebar-link">一、channel关闭规则</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/2020/01/09/how-to-turn-off-channel-gracefully/#二、代码实现" class="sidebar-link">二、代码实现</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"><div sidebar-items="[object Object]" class="theme-default-content"><article class="post post-type-normal"><header class="post-header"><h1 class="post-title">如何优雅的关闭channel</h1> <div class="post-meta"><span><span>date</span> <span>2020-01-09</span></span> <span><span>tags</span> <span>channel</span></span></div></header> <div class="post-body"><div class="content__default"><h2 id="一、channel关闭规则"><a href="#一、channel关闭规则" class="header-anchor">#</a> 一、channel关闭规则</h2> <ul><li>不要从接收端关闭channel。</li> <li>也不要关闭有多个并发发送者的channel。</li></ul> <p>换句话说,如果sender(发送者)只是唯一的sender或者是channel最后一个活跃的sender,那么你应该在sender的goroutine关闭channel,从而通知receiver(s)(接收者们)已经没有值可以读了。维持这条原则将保证永远不会发生向一个已经关闭的channel发送值或者关闭一个已经关闭的channel。</p> <h2 id="二、代码实现"><a href="#二、代码实现" class="header-anchor">#</a> 二、代码实现</h2> <ul><li>一个生产者,多个消费者,这是最简单的场景了，就只是当生产者不想再发送的时候让生产者关闭data的channel</li></ul> <div class="language- extra-class"><pre class="language-text"><code>package main
+
+import (
+	&quot;log&quot;
+	&quot;math/rand&quot;
+	&quot;sync&quot;
+	&quot;time&quot;
+)
+
+func main() {
+	rand.Seed(time.Now().UnixNano())
+	log.SetFlags(0)
+
+	// ...
+	const MaxRandomNumber = 100000
+	const NumReceivers = 100
+
+	wgReceivers := sync.WaitGroup{}
+	wgReceivers.Add(NumReceivers)
+
+	// ...
+	dataCh := make(chan int, 100)
+
+	// the producer
+	go func() {
+		for {
+			if value := rand.Intn(MaxRandomNumber); value == 0 {
+				// the only sender can close the channel safely.
+				close(dataCh)
+				return
+			} else {
+				dataCh &lt;- value
+			}
+		}
+	}()
+
+	// the comsumer
+	for i := 0; i &lt; NumReceivers; i++ {
+		go func() {
+			defer wgReceivers.Done()
+
+			// receive values until dataCh is closed and
+			// the value buffer queue of dataCh is empty.
+			for value := range dataCh {
+				log.Println(value)
+			}
+		}()
+	}
+
+	wgReceivers.Wait()
+}
+</code></pre></div><ul><li>一个消费者，多个生产者,消费者通过关闭一个额外的signal channel说“请停止发送”</li></ul> <div class="language- extra-class"><pre class="language-text"><code>package main
+
+import (
+	&quot;log&quot;
+	&quot;math/rand&quot;
+	&quot;sync&quot;
+	&quot;time&quot;
+)
+
+func main() {
+	rand.Seed(time.Now().UnixNano())
+	log.SetFlags(0)
+
+	// ...
+	const MaxRandomNumber = 100000
+	const NumSenders = 1000
+
+	wgReceivers := sync.WaitGroup{}
+	wgReceivers.Add(1)
+
+	// ...
+	dataCh := make(chan int, 100)
+	stopCh := make(chan struct{})
+	// stopCh is an additional signal channel.
+	// Its sender is the receiver of channel dataCh.
+	// Its reveivers are the senders of channel dataCh.
+
+	// senders
+	for i := 0; i &lt; NumSenders; i++ {
+		go func() {
+			for {
+				value := rand.Intn(MaxRandomNumber)
+
+				select {
+				case &lt;-stopCh:
+					return
+				case dataCh &lt;- value:
+				}
+			}
+		}()
+	}
+
+	// the receiver
+	go func() {
+		defer wgReceivers.Done()
+
+		for value := range dataCh {
+			if value == MaxRandomNumber-1 {
+				// the receiver of the dataCh channel is
+				// also the sender of the stopCh cahnnel.
+				// It is safe to close the stop channel here.
+				close(stopCh)
+				return
+			}
+
+			log.Println(value)
+		}
+	}()
+
+	// ...
+	wgReceivers.Wait()
+}
+</code></pre></div><ul><li>多个消费者，多个生产者，它们当中任意一个通过通知一个moderator(仲裁者)关闭额外的signal channel来说“让我们结束游戏吧”</li></ul> <div class="language- extra-class"><pre class="language-text"><code>package main
+
+import (
+	&quot;log&quot;
+	&quot;math/rand&quot;
+	&quot;strconv&quot;
+	&quot;sync&quot;
+	&quot;time&quot;
+)
+
+func main() {
+	rand.Seed(time.Now().UnixNano())
+	log.SetFlags(0)
+
+	// ...
+	const MaxRandomNumber = 100000
+	const NumReceivers = 10
+	const NumSenders = 1000
+
+	wgReceivers := sync.WaitGroup{}
+	wgReceivers.Add(NumReceivers)
+
+	// ...
+	dataCh := make(chan int, 100)
+	stopCh := make(chan struct{})
+	// stopCh is an additional signal channel.
+	// Its sender is the moderator goroutine shown below.
+	// Its reveivers are all senders and receivers of dataCh.
+	toStop := make(chan string, 1)
+	// the channel toStop is used to notify the moderator
+	// to close the additional signal channel (stopCh).
+	// Its senders are any senders and receivers of dataCh.
+	// Its reveiver is the moderator goroutine shown below.
+
+	var stoppedBy string
+
+	// moderator
+	go func() {
+		stoppedBy = &lt;-toStop // part of the trick used to notify the moderator
+		// to close the additional signal channel.
+		close(stopCh)
+	}()
+
+	// producer
+	for i := 0; i &lt; NumSenders; i++ {
+		go func(id string) {
+			for {
+				value := rand.Intn(MaxRandomNumber)
+				if value == 0 {
+					// here, a trick is used to notify the moderator
+					// to close the additional signal channel.
+					select {
+					case toStop &lt;- &quot;sender#&quot; + id:
+					default:
+					}
+					return
+				}
+
+				// the first select here is to try to exit the
+				// goroutine as early as possible.
+				select {
+				case &lt;-stopCh:
+					return
+				default:
+				}
+
+				select {
+				case &lt;-stopCh:
+					return
+				case dataCh &lt;- value:
+				}
+			}
+		}(strconv.Itoa(i))
+	}
+
+	// comsumer
+	for i := 0; i &lt; NumReceivers; i++ {
+		go func(id string) {
+			defer wgReceivers.Done()
+
+			for {
+				// same as senders, the first select here is to 
+				// try to exit the goroutine as early as possible.
+				select {
+				case &lt;-stopCh:
+					return
+				default:
+				}
+
+				select {
+				case &lt;-stopCh:
+					return
+				case value := &lt;-dataCh:
+					if value == MaxRandomNumber-1 {
+						// the same trick is used to notify the moderator 
+						// to close the additional signal channel.
+						select {
+						case toStop &lt;- &quot;receiver#&quot; + id:
+						default:
+						}
+						return
+					}
+
+					log.Println(value)
+				}
+			}
+		}(strconv.Itoa(i))
+	}
+
+	// ...
+	wgReceivers.Wait()
+	log.Println(&quot;stopped by&quot;, stoppedBy)
+}
+</code></pre></div></div></div></article></div></main> <div class="footer">MIT Licensed | Copyright © 2020-present <a href="https://www.github.com/lostinfo" target="_blank">Lostinfo</a></div></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.69df8792.js" defer></script><script src="/assets/js/8.ce605a37.js" defer></script><script src="/assets/js/13.850b3e67.js" defer></script>
+  </body>
+</html>

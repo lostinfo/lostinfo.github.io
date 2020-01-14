@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>在 Laravel 中动态隐藏 API 字段 | lostinfo.github.io</title>
+    <meta name="description" content="lostinfo.github.io">
+    <link rel="icon" href="/favicon.ico">
+    
+    <link rel="preload" href="/assets/css/0.styles.ece84557.css" as="style"><link rel="preload" href="/assets/js/app.69df8792.js" as="script"><link rel="preload" href="/assets/js/8.ce605a37.js" as="script"><link rel="preload" href="/assets/js/11.6500be05.js" as="script"><link rel="prefetch" href="/assets/js/10.910b140c.js"><link rel="prefetch" href="/assets/js/12.81a1565e.js"><link rel="prefetch" href="/assets/js/13.850b3e67.js"><link rel="prefetch" href="/assets/js/14.05d87de1.js"><link rel="prefetch" href="/assets/js/2.ed6fd9ea.js"><link rel="prefetch" href="/assets/js/3.9e95c821.js"><link rel="prefetch" href="/assets/js/4.72441ce4.js"><link rel="prefetch" href="/assets/js/5.157322c8.js"><link rel="prefetch" href="/assets/js/6.e5a15b30.js"><link rel="prefetch" href="/assets/js/7.61d277c0.js"><link rel="prefetch" href="/assets/js/9.73cd95c7.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.ece84557.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">lostinfo.github.io</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/tag/" class="nav-link">Tag</a></div><div class="nav-item"><a href="https://www.github.com/lostinfo" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/tag/" class="nav-link">Tag</a></div><div class="nav-item"><a href="https://www.github.com/lostinfo" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>在 Laravel 中动态隐藏 API 字段</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/2020/01/14/hide-api-fields-dynamically-in-laravel/#初始化项目" class="sidebar-link">初始化项目</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/2020/01/14/hide-api-fields-dynamically-in-laravel/#路由" class="sidebar-link">路由</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/2020/01/14/hide-api-fields-dynamically-in-laravel/#控制器" class="sidebar-link">控制器</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/2020/01/14/hide-api-fields-dynamically-in-laravel/#usersresource-类" class="sidebar-link">UsersResource 类</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/2020/01/14/hide-api-fields-dynamically-in-laravel/#usersresourcecollection-类" class="sidebar-link">UsersResourceCollection 类</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/2020/01/14/hide-api-fields-dynamically-in-laravel/#总结" class="sidebar-link">总结</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"><div sidebar-items="[object Object]" class="theme-default-content"><article class="post post-type-normal"><header class="post-header"><h1 class="post-title">在 Laravel 中动态隐藏 API 字段</h1> <div class="post-meta"><span><span>date</span> <span>2020-01-14</span></span> <span><span>tags</span> <span>php、laravel</span></span></div></header> <div class="post-body"><div class="content__default"><p><img src="https://cdn.learnku.com/uploads/images/201801/12/1/n6lcw6dO6I.png" alt=""></p> <p>我最近在 Laravel Brasil 社区看到一个<a href="https://github.com/laravelbrasil/forum/issues/140" target="_blank" rel="noopener noreferrer">问题<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>，结果比看起来更有趣。想象一下你有一个 <code>UsersResource</code> 用下面的实现：</p> <div class="language- extra-class"><pre class="language-text"><code>&lt;?php
+namespace App\Http\Resources;
+use Illuminate\Http\Resources\Json\Resource;
+class UsersResource extends Resource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @param  \Illuminate\Http\Request
+     * @return array
+     */
+    public function toArray($request)
+    {
+        return [
+            'id' =&gt; $this-&gt;id,
+            'name' =&gt; $this-&gt;name,
+            'email' =&gt; $this-&gt;email
+        ];
+    }
+}
+</code></pre></div> <p>出于某种原因，您可能希望在另一个端点上重新使用该资源类，但隐藏 <code>email</code> 字段。这篇文章就是告诉你如何实现这一点的。<br>
+如果你不知道  <code>API Resources</code> 是什么，请查看我之前关于这个的文章。</p> <ul><li><a href="https://hackernoon.com/first-impressions-on-laravel-api-resources-4869b73b7847" target="_blank" rel="noopener noreferrer">First Impression on API Resources<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li> <li><a href="https://hackernoon.com/reusable-api-resource-with-nested-relationship-laravel-5-5-c654c7243869" target="_blank" rel="noopener noreferrer">API Resources with Nested Relationship<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul> <h2 id="初始化项目"><a href="#初始化项目" class="header-anchor">#</a> 初始化项目</h2> <p><em>有趣的东西从第 3 节开始.</em></p> <div class="language- extra-class"><pre class="language-text"><code>composer create-project --prefer-dist laravel/laravel api-fields
+cd api-fields
+touch database/database.sqlite
+</code></pre></div><p>编辑<code>.env</code> 文件，删除数据库设置并使用 SQLite</p> <div class="language- extra-class"><pre class="language-text"><code>DB_CONNECTION=sqlite
+</code></pre></div><p>继续设置项目</p> <div class="language- extra-class"><pre class="language-text"><code>php artisan migrate
+php artisan make:resource UsersResource
+php artisan make:resource --collection UsersResourceCollection 
+php artisan make:controller UsersController
+php artisan tinker
+factory(App\User::class)-&gt;times(20)-&gt;create();
+quit
+</code></pre></div><h2 id="路由"><a href="#路由" class="header-anchor">#</a> 路由</h2> <p>确保在 <code>api.php</code> 文件中创建一个路由。</p> <div class="language- extra-class"><pre class="language-text"><code>Route::apiResource('/users', 'UsersController');
+</code></pre></div><h2 id="控制器"><a href="#控制器" class="header-anchor">#</a> 控制器</h2> <p>控制器代表了期望的目标。在这个例子中，让我们假设在用户列表中，我们只想要所有用户的名字，而在用户显示中，我们只想隐藏电子邮件地址。</p> <div class="language- extra-class"><pre class="language-text"><code>&lt;?php
+namespace App\Http\Controllers;
+use App\Http\Resources\UsersResource;
+use App\User;
+class UsersController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @param User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function index(User $user)
+    {
+        return UsersResource::collection($user-&gt;paginate())-&gt;hide(['id', 'email']);
+    }
+    /**
+     * Display a user.
+     *
+     * @param User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function show(User $user)
+    {
+        return UsersResource::make($user)-&gt;hide(['id']);
+    }
+}
+</code></pre></div><p>为了达到这个目的，我们需要 <code>UsersResourceCollection</code> 和 <code>UsersResource</code> 同时知道如何处理  <code>hide</code> 调用。</p> <h2 id="usersresource-类"><a href="#usersresource-类" class="header-anchor">#</a> UsersResource 类</h2> <p>让我们从  <code>show</code> 方法开始.  <code>UsersResource::make</code> 将会返回  <code>UsersResource</code> 的对象。因此，我们应该揭开  <code>hide</code> 的神秘面纱，它可以存储我们期望从响应中移除的键.</p> <div class="language- extra-class"><pre class="language-text"><code>&lt;?php
+namespace App\Http\Resources;
+use Illuminate\Http\Resources\Json\Resource;
+class UsersResource extends Resource
+{
+    /**
+     * @var array
+     */
+    protected $withoutFields = [];
+
+     /**
+     * Transform the resource into an array.
+     *
+     * @param  \Illuminate\Http\Request
+     * @return array
+     */
+    public function toArray($request)
+    {
+        return $this-&gt;filterFields([
+            'id' =&gt; $this-&gt;id,
+            'name' =&gt; $this-&gt;name,
+            'email' =&gt; $this-&gt;email
+        ]);
+    }
+    /**
+     * Set the keys that are supposed to be filtered out.
+     *
+     * @param array $fields
+     * @return $this
+     */
+    public function hide(array $fields)
+    {
+        $this-&gt;withoutFields = $fields;
+        return $this;
+    }
+    /**
+     * Remove the filtered keys.
+     *
+     * @param $array
+     * @return array
+     */
+    protected function filterFields($array)
+    {
+        return collect($array)-&gt;forget($this-&gt;withoutFields)-&gt;toArray();
+    }
+}
+</code></pre></div><p>大功告成！现在我们可以访问 <code>http://api.dev/api/users/1</code> ，你会发现响应中已经没有 <code>id</code> 字段了。</p> <div class="language- extra-class"><pre class="language-text"><code>{
+ &quot;data&quot;: {
+  &quot;name&quot;: &quot;Mr. Frederik Morar&quot;,
+  &quot;email&quot;: &quot;darryl.wilkinson@example.org&quot;
+ }
+}
+</code></pre></div><h2 id="usersresourcecollection-类"><a href="#usersresourcecollection-类" class="header-anchor">#</a> UsersResourceCollection 类</h2> <p>执行项目集合中的 <code>index</code> 方法，我们需要作出如下修改:</p> <ul><li>(1) 确保  <code>UsersResource::collection</code> 返回 <code>UsersResourceCollection</code> 实例</li> <li>(2)  在  <code>UsersResourceCollection</code> 上公开 <code>hide</code> 方法</li> <li>(3) 将隐藏的字段传递给  <code>UsersResource</code></li></ul> <p>关于 (1), 我们只需要重写  <code>UsersResource</code> 中的 <code>collection</code> 方法</p> <div class="language- extra-class"><pre class="language-text"><code>&lt;?php
+namespace App\Http\Resources;
+use Illuminate\Http\Resources\Json\Resource;
+class UsersResource extends Resource
+{
+    public static function collection($resource)
+    {
+        return tap(new UsersResourceCollection($resource), function ($collection) {
+            $collection-&gt;collects = __CLASS__;
+        });
+    }
+
+    /**
+     * @var array
+     */
+    protected $withoutFields = [];
+    /**
+     * Transform the resource into an array.
+     * 将资源转换为一个数组
+     * 
+     * @param  \Illuminate\Http\Request
+     * @return array
+     */
+    public function toArray($request)
+    {
+        return $this-&gt;filterFields([
+            'id' =&gt; $this-&gt;id,
+            'name' =&gt; $this-&gt;name,
+            'email' =&gt; $this-&gt;email
+        ]);
+    }
+    /**
+     * Set the keys that are supposed to be filtered out.
+     *  设置需要隐藏过滤掉的键
+     *  
+     * @param array $fields
+     * @return $this
+     */
+    public function hide(array $fields)
+    {
+        $this-&gt;withoutFields = $fields;
+        return $this;
+    }
+    /**
+     * Remove the filtered keys.
+     * 删除隐藏的键
+     * 
+     * @param $array
+     * @return array
+     */
+    protected function filterFields($array)
+    {
+        return collect($array)-&gt;forget($this-&gt;withoutFields)-&gt;toArray();
+    }
+}
+</code></pre></div><p>关于 (2) 和 (3) 我们需要修改 <code>UsersResourceCollection</code> 文件。让我们公开 <code>hide</code> 方法并使用隐藏字段处理集合。.</p> <div class="language- extra-class"><pre class="language-text"><code>&lt;?php
+namespace App\Http\Resources;
+use Illuminate\Http\Resources\Json\ResourceCollection;
+class UsersResourceCollection extends ResourceCollection
+{
+    /**
+     * @var array
+     */
+    protected $withoutFields = [];
+    /**
+     * Transform the resource collection into an array.
+     *
+     * @param  \Illuminate\Http\Request
+     * @return array
+     */
+    public function toArray($request)
+    {
+        return $this-&gt;processCollection($request);
+    }
+    public function hide(array $fields)
+    {
+        $this-&gt;withoutFields = $fields;
+        return $this;
+    }
+    /**
+     * Send fields to hide to UsersResource while processing the collection.
+     *  将隐藏字段通过 UsersResource 处理集合
+     * 
+     * @param $request
+     * @return array
+     */
+    protected function processCollection($request)
+    {
+        return $this-&gt;collection-&gt;map(function (UsersResource $resource) use ($request) {
+            return $resource-&gt;hide($this-&gt;withoutFields)-&gt;toArray($request);
+        })-&gt;all();
+    }
+}
+</code></pre></div><p>就是这么简单！现在我们访问 <code>http://api.dev/api/users</code>  看到返回结果中没有了 <code>id</code> 和 <code>email</code> 字段了如在 <code>UsersController</code> 中的指定方法 .</p> <div class="language- extra-class"><pre class="language-text"><code>{
+ &quot;data&quot;: [{
+  &quot;name&quot;: &quot;Mr. Frederik Morar&quot;
+ }, {
+  &quot;name&quot;: &quot;Angel Daniel&quot;
+ }, {
+  &quot;name&quot;: &quot;Brianne Mueller&quot;
+ }],
+ &quot;links&quot;: {
+  &quot;first&quot;: &quot;http://lab.php71/api-fields-2/public/api/users?page=1&quot;,
+  &quot;last&quot;: &quot;http://lab.php71/api-fields-2/public/api/users?page=7&quot;,
+  &quot;prev&quot;: null,
+  &quot;next&quot;: &quot;http://lab.php71/api-fields-2/public/api/users?page=2&quot;
+ },
+ &quot;meta&quot;: {
+  &quot;current_page&quot;: 1,
+  &quot;from&quot;: 1,
+  &quot;last_page&quot;: 7,
+  &quot;path&quot;: &quot;http://api-fields.lab.php71/api/users&quot;,
+  &quot;per_page&quot;: 3,
+  &quot;to&quot;: 3,
+  &quot;total&quot;: 20
+ }
+}
+</code></pre></div><h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>本文目标是让 <code>Resource</code> 类通过隐藏一些在其他接口允许暴露的字段从而变得更加灵活。例如当我们请求 <code>/users</code> 接口时响应的数据是不包含 <code>avatar</code> 字段的，但是当请求 <code>/users/99</code> 时响应的数据里包含 <code>avatar</code> 字段。</p> <p>我不推荐过度重复去请求 API 资源，因为它很可能会把简单的事情变得更加复杂，所以说在请求的时候隐藏某些特定的字段是更简单、更合理的解决方案。</p></div></div></article></div></main> <div class="footer">MIT Licensed | Copyright © 2020-present <a href="https://www.github.com/lostinfo" target="_blank">Lostinfo</a></div></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.69df8792.js" defer></script><script src="/assets/js/8.ce605a37.js" defer></script><script src="/assets/js/11.6500be05.js" defer></script>
+  </body>
+</html>
